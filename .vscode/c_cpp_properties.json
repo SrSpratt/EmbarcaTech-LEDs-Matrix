@@ -4,7 +4,8 @@
             "name": "Pico",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${userHome}/.pico-sdk/sdk/2.1.0/**"
+                "${userHome}/.pico-sdk/sdk/2.1.0/**",
+                "C:/Users/hilqu/.pico-sdk/sdk/2.1.0/src/common/pico_stdlib_headers/include"
             ],
             "forcedInclude": [
                 "${userHome}/.pico-sdk/sdk/2.1.0/src/common/pico_base_headers/include/pico.h",
