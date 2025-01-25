@@ -75,7 +75,31 @@ double desenhoAnimacao[25] =   {0.0, 0.0, 0.0, 0.0, 0.0,
                                 0.0, 0.0, 1.0, 0.0, 0.0,
                                 0.0, 0.0, 0.0, 0.0, 0.0};
 */
-double desenhoR[25] = {
+double desenhoInicialR[25] = {
+    0.5, 0.5, 0.5, 0.5, 0.5,
+    0.5, 0.5, 0.5, 0.5, 0.5,  
+    0.5, 0.5, 0.5, 0.5, 0.5,
+    0.5, 0.5, 0.5, 0.5, 0.5, 
+    0.5, 0.5, 0.5, 0.5, 0.5   
+};
+
+double desenhoInicialG[25] = {
+    0.5, 0.5, 0.5, 0.5, 0.5,
+    0.5, 0.5, 0.5, 0.5, 0.5,
+    0.5, 0.5, 0.5, 0.5, 0.5,
+    0.5, 0.5, 0.5, 0.5, 0.5,
+    0.5, 0.5, 0.5, 0.5, 0.5
+};
+
+double desenhoInicialB[25] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0
+};
+
+double desenhoAnimacaoR[25] = {
     0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.5, 0.0, 0.0,  
     0.0, 0.5, 0.5, 0.5, 0.0,
@@ -83,15 +107,15 @@ double desenhoR[25] = {
     0.0, 0.0, 0.0, 0.0, 0.0   
 };
 
-double desenhoG[25] = {
+double desenhoAnimacaoG[25] = {
     0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.5, 0.0, 0.0,
-    0.0, 0.5, 0.5, 0.5, 0.0,
-    0.0, 0.0, 0.5, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0
 };
 
-double desenhoB[25] = {
+double desenhoAnimacaoB[25] = {
     0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0,
@@ -162,11 +186,12 @@ int AnimacaoCruz(){
             if (key != '\0') {
                 printf("Tecla apertada: %c\n", key);
                 if (key == '8'){
-                    desenhoPIO(desenhoR, desenhoG, desenhoB, pio, sm);
+                    desenhoPIO(desenhoAnimacaoR, desenhoAnimacaoG, desenhoAnimacaoB, pio, sm);
+                    sleep_ms(300);
                 }
             } else{
                 //rotina para escrever na matriz de leds com o emprego de PIO - desenho inicial
-                
+                desenhoPIO(desenhoInicialR, desenhoInicialG, desenhoInicialB, pio, sm);
             }
 
         sleep_ms(500);
