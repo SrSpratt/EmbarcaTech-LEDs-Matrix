@@ -59,3 +59,12 @@ double desenho[25] =   {0.0, 0.3, 0.3, 0.3, 0.0,
                         0.0, 0.3, 0.3, 0.3, 0.0,
                         0.0, 0.3, 0.0, 0.3, 0.0,
                         0.0, 0.3, 0.3, 0.3, 0.0};
+
+//Rotina para definição da intensidade de cores do led
+uint32_t MatrixRGB(double b, double r, double g) {
+  unsigned char R, G, B;
+  R = r * 255;
+  G = g * 255;
+  B = b * 255;
+  return (G << 24) | (R << 16) | (B << 8);
+}
