@@ -34,11 +34,9 @@ pico_sdk_init()
 
 # Automatically gather all source files from src/
 file(GLOB_RECURSE SRC_FILES ${CMAKE_SOURCE_DIR}/src/*.c)
-list(APPEND SRC_FILES ${CMAKE_SOURCE_DIR}/LEDs_Matrix.c)
 
-# Add executable using the gathered source files
-add_executable(LEDs_Matrix ${SRC_FILES})
-add_subdirectory(include)
+# Add executable using the gathered source files and LEDs_Matrix.c
+add_executable(LEDs_Matrix ${SRC_FILES} ${CMAKE_SOURCE_DIR}/LEDs_Matrix.c)
 
 # Set program name and version
 pico_set_program_name(LEDs_Matrix "LEDs_Matrix")
