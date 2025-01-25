@@ -90,8 +90,85 @@ double *Drawing(int frame)
         1.0, 0.0, 1.0, 0.0, 1.0,
         0.0, 1.0, 0.0, 1.0, 0.0};
 
-    // Proximo desenho.....
+    // Letra M
+    static double firstFrameM[] = {
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0};
 
+    static double secondFrameM[] = {
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 0.0, 1.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0};
+
+    static double thirdFrameM[] = {
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 0.0, 1.0, 1.0,
+        1.0, 0.0, 1.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0};
+
+    static double fourthFrameM[] = {
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 0.0, 1.0, 1.0,
+        1.0, 0.0, 1.0, 0.0, 1.0,
+        1.0, 1.0, 0.0, 1.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0};
+
+    static double fifthFrameM[] = {
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 0.0, 1.0, 1.0,
+        1.0, 0.0, 1.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0};
+
+    // Frames de Quadrados
+    static double firstFrameQ[] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 1.0, 0.0, 1.0, 0.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0};
+
+    static double secondFrameQ[] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0};
+
+    static double thirdFrameQ[] = {
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 1.0, 1.0, 0.0};
+
+    static double fourthFrameQ[] = {
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0};
+
+    static double fifthFrameQ[] = {
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 1.0, 0.0, 1.0, 0.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 1.0};
+
+    static double sixthFrameQ[] = {
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 0.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0};
+        
     // Desenho padrão
     static double defaultArray[] = {
         0.0, 0.0, 0.0, 0.0, 0.0,
@@ -128,6 +205,39 @@ double *Drawing(int frame)
         break;
     case 9:
         return sixthFrameCruz;
+        break;
+    case 10:
+        return firstFrameM;
+        break;
+    case 11:
+        return secondFrameM;
+        break;
+    case 12:
+        return thirdFrameM;
+        break;
+    case 13:
+        return fourthFrameM;
+        break;
+    case 14:
+        return fifthFrameM;
+        break;
+    case 15:
+        return firstFrameQ;
+        break;
+    case 16:
+        return secondFrameQ;
+        break;
+    case 17:
+        return thirdFrameQ;
+        break;
+    case 18:
+        return fourthFrameQ;
+        break;
+    case 19:
+        return fifthFrameQ;
+        break;
+    case 20:
+        return sixthFrameQ;
         break;
     default:
         return defaultArray;
