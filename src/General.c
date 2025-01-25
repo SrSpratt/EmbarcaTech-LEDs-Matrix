@@ -15,7 +15,7 @@ refs InitConf(){
         printf("Clock configurado para %ld\n", clock_get_hz(clk_sys));
     pio.Offset = pio_add_program(pio.Ref, &pio_matrix_program);
     pio.StateMachine = pio_claim_unused_sm(pio.Ref, true);
-    
+    PrintPIO(pio);
     return pio;
 }
 

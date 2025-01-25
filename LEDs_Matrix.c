@@ -32,17 +32,15 @@ int main()
     KEYMAP = KeyMap();
 
     char key;
-    uint32_t led;
+    uint32_t led = 0;
     RGB color = { .Red = 0.0, .Green = 0.0, .Blue = 0.0 };
     PrintRGB(color);
 
     while(true){
         key = ReadMap(KEYMAP, ROWS, COLUMNS);
-        if (key != '$' && key != '1')
-            printf("Caractere pressionado: %c\n", key);
-        else if (key == '1')
-            Draw(drawing, led, pio, color);
+        
         sleep_ms(100);
+        Draw(drawing, led, pio, color);
     }
     
     return 0;

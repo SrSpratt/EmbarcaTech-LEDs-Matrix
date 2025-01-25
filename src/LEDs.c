@@ -16,12 +16,14 @@ void PrintPIO(refs pio){
     printf("PIO Addr: %d\n", pio.Ref);
     printf("Offset inst: %d\n", pio.Offset);
     printf("State Machine no: %d\n", pio.StateMachine);
+    printf("FIFO empty: %d\n", pio_sm_is_rx_fifo_empty(pio.Ref, pio.StateMachine));
+    printf("FIFO full: %d\n", pio_sm_is_rx_fifo_full(pio.Ref, pio.StateMachine));
     printf("---------\n");
 }
 
 const double* Drawing(){
     static const double array[] = {
-        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0,
         0.0, 1.0, 0.0, 1.0, 0.0,
         0.0, 0.0, 1.0, 0.0, 0.0,
         0.0, 1.0, 0.0, 1.0, 0.0,
@@ -38,29 +40,31 @@ uint32_t RGBMatrix(RGB color){
     return (G << 24) | (R << 16) | (B << 8);
 }
 
+void PrintBinary(int num) {
+    printf("\n");
+    int i;
+    for (i = 31; i >= 0; i--) {
+    (num & (1 << i)) ? printf("1") : printf("0");
+    }
+    printf("\n");
+}
+
 void Draw(const double* drawing, uint32_t led, refs pio, RGB color){
     PrintPIO(pio);
     PrintRGB(color);
 
     for (int16_t i = 0; i < NPIXELS; i++){
-        printf("Elemento %d\n", i);
-        if((i%2) == 0){
-            color.Red = 0.0;
-            color.Green = 0.0;
-            color.Blue = drawing[NPIXELS-1-i];
-            //printf("%d\n",24-i);
-            //printf("%lf\n",drawing[24-i]);
-            led = RGBMatrix(color);
-        } else {
-            color.Red = drawing[NPIXELS-1-i];
-            color.Green = 0.0;
-            color.Blue = 0.0;
-            led = RGBMatrix(color);
-        }
+        //printf("Elemento %d\n", i);
+        color.Red = 0.0;
+        color.Green = 0.0;
+        color.Blue = 1.0;
+        led = RGBMatrix(color);
         pio_sm_put_blocking(pio.Ref, pio.StateMachine, led);
         //printf("LED %d: %d\n", i, led);
-        PrintRGB(color);
-        printf("LED: %d\n", led);
+        // PrintRGB(color);
+        // printf("LED: %d\n", led);
+        // PrintPIO(pio);
+        // PrintBinary(led);
         // printf("LED %d: %d\nR: %d, G: %d, B: %d\n ", i, led, color.Red, color.Green, color.Blue);
     }
 
