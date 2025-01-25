@@ -68,3 +68,19 @@ uint32_t MatrixRGB(double b, double r, double g) {
   B = b * 255;
   return (G << 24) | (R << 16) | (B << 8);
 }
+
+//Rotina para acionar a matrix de leds - ws2812b
+void desenhoPIO(double *desenho, uint32_t valorLed, PIO pio, uint sm, double r, double g, double b){
+
+    for (int16_t i = 0; i < numPixels; i++) {
+        if (i%2==0)
+        {
+            valorLed = MatrixRGB(desenho[24-i], r=0.0, g=0.0);
+            pio_sm_put_blocking(pio, sm, valorLed);
+
+        }else{
+            valorLed = MatrixRGB(b=0.0, desenho[24-i], g=0.0);
+            pio_sm_put_blocking(pio, sm, valorLed);
+        }
+    }
+}
