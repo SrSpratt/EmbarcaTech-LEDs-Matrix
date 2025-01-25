@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include <HelloWorld.h>
-
+#include "AnimacaoCruz.h"
 
 
 int main()
@@ -13,5 +13,12 @@ int main()
         printf("Hello, world!\n");
         sleep_ms(1000);
     }*/
+    InitializeKeypad();
+
+    while (true) {
+        char key = ReadKeypad();
+        ProcessKey(key);
+    }
+
     return 0;
 }

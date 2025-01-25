@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
+#include "AnimacaoCruz.h"
 
 const uint8_t rowPins[] = {12, 13, 14, 15};  // Linhas do teclado
 const uint8_t colsPins[] = {8, 9, 10, 11};  // Colunas do teclado
