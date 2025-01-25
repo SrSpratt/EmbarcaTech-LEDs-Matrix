@@ -2,6 +2,8 @@
 #include "pico/stdlib.h"
 #include <KeyBoardELM.h>
 #include <GeneralPinELM.h>
+#include <LEDsELM.h>
+#include "hardware/clocks.h"
 
 
 int main()
@@ -11,18 +13,33 @@ int main()
     const int COLUMNS[NCOLUMNS] = {COLINIT + 3, COLINIT + 2, COLINIT + 1, COLINIT};
     const char (*KEYMAP)[NCOLUMNS];
 
+    refs pio;
+
+    const double* drawing = Drawing();
+
     //printf("ANTES DE INICIAR\n");
-    stdio_init_all();
+    pio = InitPIO();
+
+    // printf("Programa iniciado!\n");
+    // printf("Desenho iniciado: \n");
+    // for (int i = 0; i < NPIXELS; i++)
+    //     printf("%lf ", drawing[i]);
+
     InitKeyboard(ROWS, COLUMNS);
     //printf("DEPOIS DE INICIAR\n");
 
     KEYMAP = KeyMap();
 
     char key;
+    uint32_t led;
+    RGB color = { .Red = 0.0, .Green = 0.0, .Blue = 0.0 };
+
     while(true){
         key = ReadMap(KEYMAP, ROWS, COLUMNS);
-        if (key != '$')
+        if (key != '$' && key != '1')
             printf("Caractere pressionado: %c\n", key);
+        else if (key == '1')
+            Draw(drawing, led, pio, color);
         sleep_ms(100);
     }
     
