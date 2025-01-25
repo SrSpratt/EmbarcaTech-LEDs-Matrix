@@ -5,19 +5,18 @@
 #include <LEDsELM.h>
 #include "hardware/clocks.h"
 
-
 int main()
 {
-    //printf("COMEÇOU\n");
+    // printf("COMEÇOU\n");
     const int ROWS[NROWS] = {ROWINIT + 3, ROWINIT + 2, ROWINIT + 1, ROWINIT};
     const int COLUMNS[NCOLUMNS] = {COLINIT + 3, COLINIT + 2, COLINIT + 1, COLINIT};
-    const char (*KEYMAP)[NCOLUMNS];
+    const char(*KEYMAP)[NCOLUMNS];
 
     refs pio;
 
-    double* drawing = Drawing(0);
+    double *drawing = Drawing(0);
 
-    //printf("ANTES DE INICIAR\n");
+    // printf("ANTES DE INICIAR\n");
     pio = InitPIO();
     PrintPIO(pio);
 
@@ -27,24 +26,43 @@ int main()
     //     printf("%lf ", drawing[i]);
 
     InitKeyboard(ROWS, COLUMNS);
-    //printf("DEPOIS DE INICIAR\n");
+    // printf("DEPOIS DE INICIAR\n");
 
     KEYMAP = KeyMap();
 
     char key;
     uint32_t led = 0;
-    RGB color = { .Red = 0.0, .Green = 0.0, .Blue = 0.0 };
-    PrintRGB(color);
+    RGB color[2] = {
+        {.Red = 0.0, .Green = 0.0, .Blue = 0.0}, 
+        {.Red = 1.0, .Green = 1.0, .Blue = 1.0}};
 
-    while(true){
+    PrintRGB(color[1]);
+
+    int position[2] = {0,0};
+
+    while (true)
+    {
         key = ReadMap(KEYMAP, ROWS, COLUMNS);
-        if (key == '1'){
-            DrawFrames(drawing, led, pio, color, 1500);
+        if (key == '1')
+        {
+            position[0] = 1;
+            position[1] = 3;
+            DrawFrames(drawing, led, pio, color, 1500, position);
+        }
+        else if (key == '8')
+        {
+            color[0].Red = 0.2;
+            color[0].Blue = 0.4;
+            color[0].Green = 0.6;
+    
+            position[0] = 4;
+            position[1] = 4;
+            DrawFrames(drawing, led, pio, color, 500, position);
         }
         else
             Draw(drawing, led, pio, color);
         sleep_ms(100);
     }
-    
+
     return 0;
 }
