@@ -1,5 +1,5 @@
-#ifndef KEYBOARD_H
-#define KEYBOARD_H
+#ifndef KEYBOARDELM_H
+#define KEYBOARDELM_H
 
 #define COLINIT 8
 #define ROWINIT 12

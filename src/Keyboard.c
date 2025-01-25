@@ -1,19 +1,16 @@
-#include <Keyboard.h>
+#include <KeyboardELM.h>
+#include <GeneralPinELM.h>
 #include "pico/stdlib.h"
 
 void InitKeyboard(const int* ROWS, const int* COLUMNS){
 
     for(int i = 0; i < NROWS; i++){
-        gpio_init(ROWS[i]);
-        gpio_set_dir(ROWS[i], false);
-        gpio_pull_down(ROWS[i]);
+        SetInput(ROWS[i]);
         //printf("Pin initiated: %d\n", ROWS[i]);
     }
 
     for(int i = 0; i < NCOLUMNS; i++){
-        gpio_init(COLUMNS[i]);
-        gpio_set_dir(COLUMNS[i], true);
-        gpio_put(COLUMNS[i], 0);
+        SetOutput(COLUMNS[i]);
         //printf("Pin initiated: %d\n", COLUMNS[i]);
     }
 

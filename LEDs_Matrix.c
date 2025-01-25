@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include <KeyBoard.h>
+#include <KeyBoardELM.h>
 
 
 int main()
@@ -8,7 +8,7 @@ int main()
     //printf("COMEÇOU\n");
     const int ROWS[NROWS] = {ROWINIT + 3, ROWINIT + 2, ROWINIT + 1, ROWINIT};
     const int COLUMNS[NCOLUMNS] = {COLINIT + 3, COLINIT + 2, COLINIT + 1, COLINIT};
-    const char** KEYMAP;
+    const char (*KEYMAP)[NCOLUMNS];
 
     //printf("ANTES DE INICIAR\n");
     stdio_init_all();
@@ -22,7 +22,7 @@ int main()
         key = ReadMap(KEYMAP, ROWS, COLUMNS);
         if (key != '$')
             printf("Caractere pressionado: %c\n", key);
-        sleep_ms(500);
+        sleep_ms(100);
     }
     
     return 0;
