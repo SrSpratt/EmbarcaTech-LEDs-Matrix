@@ -34,7 +34,7 @@ int main()
     uint32_t led = 0;
     RGB color[2] = {
         {.Red = 0.0, .Green = 0.0, .Blue = 0.0}, 
-        {.Red = 1.0, .Green = 1.0, .Blue = 1.0}};
+        {.Red = 0.2, .Green = 0.2, .Blue = 0.0}};
 
     PrintRGB(color[1]);
 
