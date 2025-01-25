@@ -10,3 +10,14 @@ const char keypad[4][4] = {
     {'7', '8', '9', 'C'},
     {'*', '0', '#', 'D'}
 };
+
+// Inicialização e direção dos pinos do teclado matricial
+void InitializeKeypad() {
+    for (int i = 0; i < 4; i++) {
+        gpio_init(rowPins[i]);
+        gpio_set_dir(rowPins[i], GPIO_IN);
+        gpio_pull_down(rowPins[i]);
+        gpio_init(colsPins[i]);
+        gpio_set_dir(colsPins[i], GPIO_OUT);
+    }
+}
