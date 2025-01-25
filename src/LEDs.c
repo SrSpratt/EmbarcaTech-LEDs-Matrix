@@ -25,7 +25,7 @@ void PrintPIO(refs pio)
 
 double *Drawing(int frame)
 {
-    //Desenho X
+    // Desenho X
     static double firstFrameX[] = {
         0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0,
@@ -47,17 +47,52 @@ double *Drawing(int frame)
         0.0, 1.0, 0.0, 1.0, 0.0,
         1.0, 0.0, 0.0, 0.0, 1.0};
 
-    //Desenho da Cuz
+    // Desenho da Cuz
     static double firstFrameCruz[] = {
+        1.0, 0.0, 1.0, 0.0, 1.0,
         0.0, 0.0, 0.0, 0.0, 0.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        1.0, 0.0, 1.0, 0.0, 1.0};
+
+    static double secondFrameCruz[] = {
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 1.0, 0.0, 1.0, 0.0,
         0.0, 0.0, 1.0, 0.0, 0.0,
-        0.0, 1.0, 1.0, 1.0, 0.0,
-        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 1.0, 0.0, 1.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0};
 
-    //Proximo desenho.....
+    static double thirdFrameCruz[] = {
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0};
 
-    //Desenho padrão
+    static double fourthFrameCruz[] = {
+        0.0, 1.0, 0.0, 1.0, 0.0,
+        1.0, 0.0, 1.0, 0.0, 1.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        1.0, 0.0, 1.0, 0.0, 1.0,
+        0.0, 1.0, 0.0, 1.0, 0.0};
+
+    static double fifthFrameCruz[] = {
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0};
+
+    static double sixthFrameCruz[] = {
+        0.0, 1.0, 0.0, 1.0, 0.0,
+        1.0, 0.0, 1.0, 0.0, 1.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        1.0, 0.0, 1.0, 0.0, 1.0,
+        0.0, 1.0, 0.0, 1.0, 0.0};
+
+    // Proximo desenho.....
+
+    // Desenho padrão
     static double defaultArray[] = {
         0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0,
@@ -78,6 +113,21 @@ double *Drawing(int frame)
         break;
     case 4:
         return firstFrameCruz;
+        break;
+    case 5:
+        return secondFrameCruz;
+        break;
+    case 6:
+        return thirdFrameCruz;
+        break;
+    case 7:
+        return fourthFrameCruz;
+        break;
+    case 8:
+        return fifthFrameCruz;
+        break;
+    case 9:
+        return sixthFrameCruz;
         break;
     default:
         return defaultArray;
