@@ -62,7 +62,7 @@ void ProcessKey(char key) {
 #define pinoLed 7
 
 //Vetor para criar imagem na matriz de led
-double desenho[25] =   {0.0, 0.3, 0.3, 0.3, 0.0,
+/*double desenho[25] =   {0.0, 0.3, 0.3, 0.3, 0.0,
                         0.0, 0.3, 0.0, 0.3, 0.0, 
                         0.0, 0.3, 0.3, 0.3, 0.0,
                         0.0, 0.3, 0.0, 0.3, 0.0,
@@ -74,6 +74,30 @@ double desenhoAnimacao[25] =   {0.0, 0.0, 0.0, 0.0, 0.0,
                                 0.0, 1.0, 1.0, 1.0, 0.0,
                                 0.0, 0.0, 1.0, 0.0, 0.0,
                                 0.0, 0.0, 0.0, 0.0, 0.0};
+*/
+double desenhoR[25] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.5, 0.0, 0.0,  
+    0.0, 0.5, 0.5, 0.5, 0.0,
+    0.0, 0.0, 0.5, 0.0, 0.0, 
+    0.0, 0.0, 0.0, 0.0, 0.0   
+};
+
+double desenhoG[25] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.5, 0.0, 0.0,
+    0.0, 0.5, 0.5, 0.5, 0.0,
+    0.0, 0.0, 0.5, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0
+};
+
+double desenhoB[25] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0
+};
 
 
 //Rotina para definição da intensidade de cores do led
@@ -86,7 +110,7 @@ uint32_t MatrixRGB(double b, double r, double g) {
 }
 
 //Rotina para acionar a matrix de leds - ws2812b
-void desenhoPIO(double *desenho, uint32_t valorLed, PIO pio, uint sm, double r, double g, double b){
+/*void desenhoPIO(double *desenho, uint32_t valorLed, PIO pio, uint sm, double r, double g, double b){
 
     for (int16_t i = 0; i < numPixels; i++) {
         if (i%2==0)
@@ -99,7 +123,17 @@ void desenhoPIO(double *desenho, uint32_t valorLed, PIO pio, uint sm, double r, 
             pio_sm_put_blocking(pio, sm, valorLed);
         }
     }
+}*/
+
+void desenhoPIO(double *desenhoR, double *desenhoG, double *desenhoB, PIO pio, uint sm) {
+    for (int16_t i = 0; i < numPixels; i++) {
+        // Combina as intensidades de cada cor para o LED atual
+        uint32_t valorLed = MatrixRGB(desenhoB[i], desenhoR[i], desenhoG[i]);
+        // Envia o valor combinado para a matriz de LEDs
+        pio_sm_put_blocking(pio, sm, valorLed);
+    }
 }
+
 
 int AnimacaoCruz(){
     PIO pio = pio0; 
@@ -128,11 +162,11 @@ int AnimacaoCruz(){
             if (key != '\0') {
                 printf("Tecla apertada: %c\n", key);
                 if (key == '8'){
-                    desenhoPIO(desenhoAnimacao, valor_led, pio, sm, r, g, b);
+                    desenhoPIO(desenhoR, desenhoG, desenhoB, pio, sm);
                 }
             } else{
                 //rotina para escrever na matriz de leds com o emprego de PIO - desenho inicial
-                desenhoPIO(desenho, valor_led, pio, sm, r, g, b);
+                
             }
 
         sleep_ms(500);
