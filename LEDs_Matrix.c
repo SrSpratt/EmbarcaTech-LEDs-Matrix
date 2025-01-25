@@ -15,7 +15,7 @@ int main()
 
     refs pio;
 
-    const double* drawing = Drawing();
+    double* drawing = Drawing(0);
 
     //printf("ANTES DE INICIAR\n");
     pio = InitPIO();
@@ -38,9 +38,12 @@ int main()
 
     while(true){
         key = ReadMap(KEYMAP, ROWS, COLUMNS);
-        
+        if (key == '1'){
+            DrawFrames(drawing, led, pio, color, 1500);
+        }
+        else
+            Draw(drawing, led, pio, color);
         sleep_ms(100);
-        Draw(drawing, led, pio, color);
     }
     
     return 0;

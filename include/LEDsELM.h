@@ -7,7 +7,8 @@
 
 void PrintRGB(RGB);
 void PrintPIO(refs);
-const double* Drawing();
-void Draw(const double*, uint32_t, refs, RGB);
+double* Drawing(int);
+void Draw(double*, uint32_t, refs, RGB);
+void DrawFrames(double*, uint32_t, refs, RGB, int);
 
 #endif

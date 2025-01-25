@@ -21,15 +21,52 @@ void PrintPIO(refs pio){
     printf("---------\n");
 }
 
-const double* Drawing(){
-    static const double array[] = {
-        1.0, 1.0, 1.0, 1.0, 1.0,
+double* Drawing(int frame){
+    static double firstArray[] = {
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0
+    };
+
+    static double secondArray[] = {
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 1.0, 0.0, 1.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 1.0, 0.0, 1.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0
+    };
+
+    static double thirdArray[] = {
+        1.0, 0.0, 0.0, 0.0, 1.0,
         0.0, 1.0, 0.0, 1.0, 0.0,
         0.0, 0.0, 1.0, 0.0, 0.0,
         0.0, 1.0, 0.0, 1.0, 0.0,
         1.0, 0.0, 0.0, 0.0, 1.0
     };
-    return array;
+
+    static double defaultArray[] = {
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0
+    };
+
+    switch (frame){
+        case 1:
+            return firstArray;
+            break;
+        case 2:
+            return secondArray;
+            break;
+        case 3:
+            return thirdArray;
+            break;
+        default:
+            return defaultArray;
+    }
 }
 
 uint32_t RGBMatrix(RGB color){
@@ -49,15 +86,22 @@ void PrintBinary(int num) {
     printf("\n");
 }
 
-void Draw(const double* drawing, uint32_t led, refs pio, RGB color){
-    PrintPIO(pio);
-    PrintRGB(color);
+void Draw(double* drawing, uint32_t led, refs pio, RGB color){
+//    PrintPIO(pio);
+//    PrintRGB(color);
 
     for (int16_t i = 0; i < NPIXELS; i++){
         //printf("Elemento %d\n", i);
-        color.Red = 0.0;
-        color.Green = 0.0;
-        color.Blue = 1.0;
+    
+        if (drawing[i]){
+            color.Red = 0.0;
+            color.Green = drawing[i];
+            color.Blue = 0.0;
+        } else {
+            color.Red = 1.0;
+            color.Green = 1.0;
+            color.Blue = 1.0;
+        }
         led = RGBMatrix(color);
         pio_sm_put_blocking(pio.Ref, pio.StateMachine, led);
         //printf("LED %d: %d\n", i, led);
@@ -68,4 +112,23 @@ void Draw(const double* drawing, uint32_t led, refs pio, RGB color){
         // printf("LED %d: %d\nR: %d, G: %d, B: %d\n ", i, led, color.Red, color.Green, color.Blue);
     }
 
+}
+
+void DrawFrames(double* drawing, uint32_t led, refs pio, RGB color, int delay){
+    drawing = Drawing(1);
+    Draw(drawing, led, pio, color);
+    sleep_ms(delay);
+    drawing = Drawing(2);
+    Draw(drawing, led, pio, color);
+    sleep_ms(delay);
+    drawing = Drawing(3);
+    Draw(drawing, led, pio, color);
+    sleep_ms(delay);
+    drawing = Drawing(2);
+    Draw(drawing, led, pio, color);
+    sleep_ms(delay);
+    drawing = Drawing(1);
+    Draw(drawing, led, pio, color);
+    sleep_ms(delay);
+    drawing = Drawing(0);
 }
