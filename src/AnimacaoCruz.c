@@ -46,3 +46,16 @@ void ProcessKey(char key) {
         printf("Key pressed: %c\n", key);
     }
 }
+
+//Número de LEDs
+#define numPixels 25
+
+//Pino de saída
+#define pinoLed 7
+
+//Vetor para criar imagem na matriz de led
+double desenho[25] =   {0.0, 0.3, 0.3, 0.3, 0.0,
+                        0.0, 0.3, 0.0, 0.3, 0.0, 
+                        0.0, 0.3, 0.3, 0.3, 0.0,
+                        0.0, 0.3, 0.0, 0.3, 0.0,
+                        0.0, 0.3, 0.3, 0.3, 0.0};
