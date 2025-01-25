@@ -19,6 +19,7 @@ int main()
 
     //printf("ANTES DE INICIAR\n");
     pio = InitPIO();
+    PrintPIO(pio);
 
     // printf("Programa iniciado!\n");
     // printf("Desenho iniciado: \n");
