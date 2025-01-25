@@ -47,17 +47,17 @@ int main()
         {
             position[0] = 1;
             position[1] = 3;
-            DrawFrames(drawing, led, pio, color, 1500, position);
+            DrawFrames(drawing, led, pio, color, 800, position);
         }
-        else if (key == '8')
+        else if (key == '5')
         {
-            color[0].Red = 0.2;
-            color[0].Blue = 0.4;
-            color[0].Green = 0.6;
+            color[0].Red = 0.5;
+            color[0].Blue = 0.7;
+            color[0].Green = 0.3;
     
             position[0] = 4;
-            position[1] = 4;
-            DrawFrames(drawing, led, pio, color, 500, position);
+            position[1] = 9;
+            DrawFrames(drawing, led, pio, color, 800, position);
         }
         else
             Draw(drawing, led, pio, color);
