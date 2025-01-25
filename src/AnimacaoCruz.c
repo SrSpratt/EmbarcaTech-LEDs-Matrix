@@ -52,9 +52,7 @@ char ReadKeypad() {
 }
 
 void ProcessKey(char key) {
-    if (key != '\0') {
-        printf("Key pressed: %c\n", key);
-    }
+
 }
 
 //Número de LEDs
@@ -69,6 +67,14 @@ double desenho[25] =   {0.0, 0.3, 0.3, 0.3, 0.0,
                         0.0, 0.3, 0.3, 0.3, 0.0,
                         0.0, 0.3, 0.0, 0.3, 0.0,
                         0.0, 0.3, 0.3, 0.3, 0.0};
+
+//Vetor para criar imagem na matriz de led
+double desenhoAnimacao[25] =   {0.5, 0.1, 0.3, 0.2, 0.0,
+                                0.0, 0.3, 0.0, 0.7, 0.0, 
+                                0.0, 0.8, 0.7, 0.3, 0.0,
+                                0.5, 0.2, 0.0, 0.9, 0.0,
+                                0.0, 0.3, 0.1, 0.3, 0.5};
+
 
 //Rotina para definição da intensidade de cores do led
 uint32_t MatrixRGB(double b, double r, double g) {
@@ -95,7 +101,6 @@ void desenhoPIO(double *desenho, uint32_t valorLed, PIO pio, uint sm, double r, 
     }
 }
 
-
 int AnimacaoCruz(){
     PIO pio = pio0; 
     bool ok;
@@ -109,20 +114,30 @@ int AnimacaoCruz(){
     // Inicializa todos os códigos stdio padrão que estão ligados ao binário.
     stdio_init_all();
 
-    printf("iniciando a transmissão PIO");
-    if (ok) printf("clock set to %ld\n", clock_get_hz(clk_sys));
-
     //configurações da PIO
     uint offset = pio_add_program(pio, &pio_matrix_program);
     uint sm = pio_claim_unused_sm(pio, true);
     pio_matrix_program_init(pio, sm, offset, pinoLed);
-    
+
+    InitializeKeypad();
+
     while (1){
-        //rotina para escrever na matriz de leds com o emprego de PIO - desenho 2
-        desenhoPIO(desenho, valor_led, pio, sm, r, g, b);
+        char key = ReadKeypad();
+        //ProcessKey(key);
+
+            if (key != '\0') {
+                printf("Tecla apertada: %c\n", key);
+                if (key == '8'){
+                    desenhoPIO(desenhoAnimacao, valor_led, pio, sm, r, g, b);
+                }
+            } else{
+                //rotina para escrever na matriz de leds com o emprego de PIO - desenho inicial
+                desenhoPIO(desenho, valor_led, pio, sm, r, g, b);
+            }
 
         sleep_ms(500);
-        printf("\nfrequeência de clock %ld\r\n", clock_get_hz(clk_sys));
     }
     
 }
+
+
