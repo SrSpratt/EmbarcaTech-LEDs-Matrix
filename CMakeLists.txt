@@ -42,19 +42,14 @@ add_executable(LEDs_Matrix ${SRC_FILES} ${CMAKE_SOURCE_DIR}/LEDs_Matrix.c)
 pico_set_program_name(LEDs_Matrix "LEDs_Matrix")
 pico_set_program_version(LEDs_Matrix "0.1")
 
-pico_generate_pio_header(LEDs_Matrix ${CMAKE_SOURCE_DIR}/pio_matrix.pio)
+pico_generate_pio_header(LEDs_Matrix ${CMAKE_SOURCE_DIR}/src/PIO_matrix.pio)
 
 # Modify the following lines to enable/disable output over UART/USB
 pico_enable_stdio_uart(LEDs_Matrix 1)
 pico_enable_stdio_usb(LEDs_Matrix 1)
 
 # Add the standard library to the build
-target_link_libraries(LEDs_Matrix pico_stdlib         
-            pico_stdlib
-            hardware_pio
-            hardware_adc
-            pico_bootrom
-            )
+target_link_libraries(LEDs_Matrix pico_stdlib hardware_pio hardware_adc)
 
 # Add the standard include files to the build
 target_include_directories(LEDs_Matrix PRIVATE
