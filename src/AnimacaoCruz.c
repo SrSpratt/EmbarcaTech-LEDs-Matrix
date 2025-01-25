@@ -69,11 +69,11 @@ double desenho[25] =   {0.0, 0.3, 0.3, 0.3, 0.0,
                         0.0, 0.3, 0.3, 0.3, 0.0};
 
 //Vetor para criar imagem na matriz de led
-double desenhoAnimacao[25] =   {0.5, 0.1, 0.3, 0.2, 0.0,
-                                0.0, 0.3, 0.0, 0.7, 0.0, 
-                                0.0, 0.8, 0.7, 0.3, 0.0,
-                                0.5, 0.2, 0.0, 0.9, 0.0,
-                                0.0, 0.3, 0.1, 0.3, 0.5};
+double desenhoAnimacao[25] =   {0.0, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 1.0, 0.0, 0.0, 
+                                0.0, 1.0, 1.0, 1.0, 0.0,
+                                0.0, 0.0, 1.0, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.0};
 
 
 //Rotina para definição da intensidade de cores do led
