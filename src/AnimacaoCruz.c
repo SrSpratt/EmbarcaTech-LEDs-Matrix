@@ -21,3 +21,27 @@ void InitializeKeypad() {
         gpio_set_dir(colsPins[i], GPIO_OUT);
     }
 }
+
+// Captura do que foi apertado no teclado
+char ReadKeypad() {
+    for (int j = 0; j < 4; j++) {
+        gpio_put(colsPins[j], 1);
+        for (int i = 0; i < 4; i++) {
+            if (gpio_get(rowPins[i])) {
+                char key = keypad[i][j];
+                sleep_ms(200);  // Debounce
+                while (gpio_get(rowPins[i]));
+                gpio_put(colsPins[j], 0);
+                return key;
+            }
+        }
+        gpio_put(colsPins[j], 0);
+    }
+    return '\0';
+}
+
+void ProcessKey(char key) {
+    if (key != '\0') {
+        printf("Key pressed: %c\n", key);
+    }
+}
