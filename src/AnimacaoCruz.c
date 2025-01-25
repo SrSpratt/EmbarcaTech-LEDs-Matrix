@@ -1,6 +1,16 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "AnimacaoCruz.h"
+#include <stdlib.h>
+#include <math.h>
+#include "pico/stdlib.h"
+#include "hardware/pio.h"
+#include "hardware/clocks.h"
+#include "hardware/adc.h"
+#include "pico/bootrom.h"
+
+//arquivo .pio
+#include "pio_matrix.pio.h"
 
 const uint8_t rowPins[] = {15, 14, 13, 12};  // Linhas do teclado
 const uint8_t colsPins[] = {11, 10, 9, 8};  // Colunas do teclado
@@ -83,4 +93,36 @@ void desenhoPIO(double *desenho, uint32_t valorLed, PIO pio, uint sm, double r, 
             pio_sm_put_blocking(pio, sm, valorLed);
         }
     }
+}
+
+
+int AnimacaoCruz(){
+    PIO pio = pio0; 
+    bool ok;
+    uint16_t i;
+    uint32_t valor_led;
+    double r = 0.0, b = 0.0 , g = 0.0;
+
+    //coloca a frequência de clock para 128 MHz, facilitando a divisão pelo clock
+    ok = set_sys_clock_khz(128000, false);
+
+    // Inicializa todos os códigos stdio padrão que estão ligados ao binário.
+    stdio_init_all();
+
+    printf("iniciando a transmissão PIO");
+    if (ok) printf("clock set to %ld\n", clock_get_hz(clk_sys));
+
+    //configurações da PIO
+    uint offset = pio_add_program(pio, &pio_matrix_program);
+    uint sm = pio_claim_unused_sm(pio, true);
+    pio_matrix_program_init(pio, sm, offset, pinoLed);
+    
+    while (1){
+        //rotina para escrever na matriz de leds com o emprego de PIO - desenho 2
+        desenhoPIO(desenho, valor_led, pio, sm, r, g, b);
+
+        sleep_ms(500);
+        printf("\nfrequeência de clock %ld\r\n", clock_get_hz(clk_sys));
+    }
+    
 }

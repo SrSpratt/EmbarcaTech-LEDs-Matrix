@@ -52,7 +52,8 @@ pico_enable_stdio_usb(LEDs_Matrix 1)
 target_link_libraries(LEDs_Matrix pico_stdlib         
             pico_stdlib
             hardware_pio
-            hardware_adcpico_bootrom
+            hardware_adc
+            pico_bootrom
             )
 
 # Add the standard include files to the build
