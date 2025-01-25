@@ -33,6 +33,7 @@ int main()
     char key;
     uint32_t led;
     RGB color = { .Red = 0.0, .Green = 0.0, .Blue = 0.0 };
+    PrintRGB(color);
 
     while(true){
         key = ReadMap(KEYMAP, ROWS, COLUMNS);

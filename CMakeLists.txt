@@ -49,7 +49,7 @@ pico_enable_stdio_uart(LEDs_Matrix 1)
 pico_enable_stdio_usb(LEDs_Matrix 1)
 
 # Add the standard library to the build
-target_link_libraries(LEDs_Matrix pico_stdlib hardware_pio)
+target_link_libraries(LEDs_Matrix pico_stdlib hardware_pio hardware_adc)
 
 pico_generate_pio_header(LEDs_Matrix ${CMAKE_SOURCE_DIR}/src/pio_matrix.pio)
 

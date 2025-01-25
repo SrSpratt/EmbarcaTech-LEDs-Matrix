@@ -5,6 +5,7 @@
 
 #define NPIXELS 25
 
+void PrintRGB(RGB);
 const double* Drawing();
 void Draw(const double*, uint32_t, refs, RGB);
 

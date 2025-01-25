@@ -1,6 +1,15 @@
 #include <LEDsELM.h>
 #include <GeneralPinELM.h>
 #include <math.h>
+#include <stdio.h>
+
+void PrintRGB(RGB color){
+    printf("---RGB---\n");
+    printf("R: %lf\n", color.Red);
+    printf("G: %lf\n", color.Green);
+    printf("B: %lf\n", color.Blue);
+    printf("---------\n");
+}
 
 const double* Drawing(){
     static const double array[] = {
@@ -40,7 +49,7 @@ void Draw(const double* drawing, uint32_t led, refs pio, RGB color){
         }
         pio_sm_put_blocking(pio.Ref, pio.StateMachine, led);
         //printf("LED %d: %d\n", i, led);
-        printf("R: %d, G: %d, B: %d\n ", color.Red, color.Green, color.Blue);
+        PrintRGB(color);
         // printf("LED %d: %d\nR: %d, G: %d, B: %d\n ", i, led, color.Red, color.Green, color.Blue);
     }
 
