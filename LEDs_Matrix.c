@@ -4,6 +4,7 @@
 #include <GeneralPinELM.h>
 #include <LEDsELM.h>
 #include "hardware/clocks.h"
+#include "pico/bootrom.h"
 
 int main()
 {
@@ -29,6 +30,7 @@ int main()
     // printf("DEPOIS DE INICIAR\n");
 
     SetOutput(BUZZERPIN);
+    SetInterruption(BUTTONPIN);
 
     KEYMAP = KeyMap();
 
@@ -48,8 +50,8 @@ int main()
         key = ReadMap(KEYMAP, ROWS, COLUMNS);
         if (key == '1')
         {
-            position[0] = 1;
-            position[1] = 3;
+            position[0] = 21;
+            position[1] = 26;
             DrawFrames(drawing, led, pio, color, 800, position);
         }
         else if (key == '3')
@@ -117,8 +119,13 @@ int main()
             color[1] = color[0];
             Draw(drawing, led, pio, color);
         }
+        else if (key == '*'){
+            TurnLedsOff(led, pio);
+            break;
+        }
         sleep_ms(100);
     }
-
+    printf("Recolocando em Bootsel!");
+    reset_usb_boot(0,0);
     return 0;
 }
