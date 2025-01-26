@@ -35,12 +35,33 @@ double *Drawing(int frame)
 
     static double secondFrameX[] = {
         0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0};
+
+    static double thirdFrameX[] = {
+        0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 1.0, 0.0, 1.0, 0.0,
         0.0, 0.0, 1.0, 0.0, 0.0,
         0.0, 1.0, 0.0, 1.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0};
 
-    static double thirdFrameX[] = {
+    static double fourthFrameX[] = {
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0};
+
+    static double fifthFrameX[] = {
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        1.0, 0.0, 0.0, 0.0, 1.0};
+
+    static double sixthFrameX[] = {
         1.0, 0.0, 0.0, 0.0, 1.0,
         0.0, 1.0, 0.0, 1.0, 0.0,
         0.0, 0.0, 1.0, 0.0, 0.0,
@@ -179,14 +200,23 @@ double *Drawing(int frame)
 
     switch (frame)
     {
-    case 1:
+    case 21:
         return firstFrameX;
         break;
-    case 2:
+    case 22:
         return secondFrameX;
         break;
-    case 3:
+    case 23:
         return thirdFrameX;
+        break;
+    case 24:
+        return fourthFrameX;
+        break;
+    case 25:
+        return fifthFrameX;
+        break;
+    case 26:
+        return sixthFrameX;
         break;
     case 4:
         return firstFrameCruz;
@@ -299,21 +329,29 @@ void Draw(double *drawing, uint32_t led, refs pio, RGB *color)
 
 void DrawFrames(double *drawing, uint32_t led, refs pio, RGB *color, int delay, int *position)
 {
-    drawing = Drawing(0);
-    Draw(drawing, led, pio, color);
-    sleep_ms(delay);
-
+    gpio_put(BUZZERPIN, 1);
     for (int i = position[0]; i <= position[1]; i++)
     {
         drawing = Drawing(i);
         Draw(drawing, led, pio, color);
         sleep_ms(delay);
     }
-
+    gpio_put(BUZZERPIN, 0);
     for (int i = position[1]; i >= position[0]; i--)
     {
         drawing = Drawing(i);
         Draw(drawing, led, pio, color);
         sleep_ms(delay);
     }
+
+    drawing = Drawing(0);
+    Draw(drawing, led, pio, color);
+    sleep_ms(delay);
 }
+
+void TurnLedsOff(uint32_t led, refs pio){
+    RGB turnedOff[2] = {{.Red = 0.0, .Green = 0.0, .Blue = 0.0}, {.Red = 0.0, .Green = 0.0, .Blue = 0.0}};
+    double *drawing = Drawing(0);
+    Draw(drawing, led, pio, turnedOff);
+}
+

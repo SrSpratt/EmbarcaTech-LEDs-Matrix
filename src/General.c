@@ -1,8 +1,10 @@
 #include <GeneralPinELM.h>
+#include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/pio.h"
 #include "hardware/clocks.h"
 #include "hardware/adc.h"
+#include "pico/bootrom.h"
 #include "pio_matrix.pio.h"
 
 
@@ -35,4 +37,18 @@ void SetOutput(int PIN){
     gpio_init(PIN);
     gpio_set_dir(PIN, true);
     gpio_put(PIN, 0);
+}
+
+void SetInterruption(int PIN){
+    //SetInput(PIN);
+    gpio_init(PIN);
+    gpio_set_dir(PIN, false);
+    gpio_pull_down(PIN);
+    printf("Interrupção configurada!\n");
+    gpio_set_irq_enabled_with_callback(PIN, GPIO_IRQ_EDGE_RISE, 1, &HandleInterruption);
+}
+
+void HandleInterruption(){
+    printf("Interrupção ativada!\n"); // indica que a interrupção foi ativada
+    reset_usb_boot(0,0);
 }

@@ -4,6 +4,7 @@
 #include <GeneralPinELM.h>
 #include <LEDsELM.h>
 #include "hardware/clocks.h"
+#include "pico/bootrom.h"
 
 int main()
 {
@@ -28,25 +29,29 @@ int main()
     InitKeyboard(ROWS, COLUMNS);
     // printf("DEPOIS DE INICIAR\n");
 
+    SetOutput(BUZZERPIN);
+    SetInterruption(BUTTONPIN);
+
     KEYMAP = KeyMap();
 
     char key;
     uint32_t led = 0;
     RGB color[2] = {
-        {.Red = 0.0, .Green = 0.0, .Blue = 0.0}, 
-        {.Red = 1.0, .Green = 1.0, .Blue = 1.0}};
+        {.Red = 0.0, .Green = 1.0, .Blue = 0.0}, 
+        {.Red = 0.0, .Green = 1.0, .Blue = 1.0}};
 
     PrintRGB(color[1]);
 
     int position[2] = {0,0};
+    Draw(drawing, led, pio, color);
 
     while (true)
     {
         key = ReadMap(KEYMAP, ROWS, COLUMNS);
         if (key == '1')
         {
-            position[0] = 1;
-            position[1] = 3;
+            position[0] = 21;
+            position[1] = 26;
             DrawFrames(drawing, led, pio, color, 800, position);
         }
         else if (key == '3')
@@ -79,10 +84,48 @@ int main()
             position[1] = 9;
             DrawFrames(drawing, led, pio, color, 800, position);
         }
-        else
+        else if (key == 'A')
+        {
+            RGB none = {.Red = 0.0, .Blue = 0.0, .Green = 0.0};
+            color[0] = none;
+            color[1] = color[0];
             Draw(drawing, led, pio, color);
+        }
+        else if (key == 'B')
+        {
+            RGB blue = {.Red = 0.0, .Blue = 1.0, .Green = 0.0};
+            color[0] = blue;
+            color[1] = color[0];
+            Draw(drawing, led, pio, color);
+        }
+        else if (key == 'C')
+        {
+            RGB red = {.Red = 0.8, .Blue = 0.0, .Green = 0.0};
+            color[0] = red;
+            color[1] = color[0];
+            Draw(drawing, led, pio, color);
+        }
+        else if (key == 'D')
+        {
+            RGB green = {.Red = 0.0, .Blue = 0.0, .Green = 0.5};
+            color[0] = green;
+            color[1] = color[0];
+            Draw(drawing, led, pio, color);
+        }
+        else if (key == '#')
+        {
+            RGB green = {.Red = 0.2, .Blue = 0.2, .Green = 0.2};
+            color[0] = green;
+            color[1] = color[0];
+            Draw(drawing, led, pio, color);
+        }
+        else if (key == '*'){
+            TurnLedsOff(led, pio);
+            break;
+        }
         sleep_ms(100);
     }
-
+    printf("Recolocando em Bootsel!");
+    reset_usb_boot(0,0);
     return 0;
 }
