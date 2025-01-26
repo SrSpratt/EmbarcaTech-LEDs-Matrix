@@ -28,17 +28,20 @@ int main()
     InitKeyboard(ROWS, COLUMNS);
     // printf("DEPOIS DE INICIAR\n");
 
+    SetOutput(BUZZERPIN);
+
     KEYMAP = KeyMap();
 
     char key;
     uint32_t led = 0;
     RGB color[2] = {
-        {.Red = 0.0, .Green = 0.0, .Blue = 0.0}, 
-        {.Red = 1.0, .Green = 1.0, .Blue = 1.0}};
+        {.Red = 0.0, .Green = 1.0, .Blue = 0.0}, 
+        {.Red = 0.0, .Green = 1.0, .Blue = 1.0}};
 
     PrintRGB(color[1]);
 
     int position[2] = {0,0};
+    Draw(drawing, led, pio, color);
 
     while (true)
     {
@@ -79,8 +82,41 @@ int main()
             position[1] = 9;
             DrawFrames(drawing, led, pio, color, 800, position);
         }
-        else
+        else if (key == 'A')
+        {
+            RGB none = {.Red = 0.0, .Blue = 0.0, .Green = 0.0};
+            color[0] = none;
+            color[1] = color[0];
             Draw(drawing, led, pio, color);
+        }
+        else if (key == 'B')
+        {
+            RGB blue = {.Red = 0.0, .Blue = 1.0, .Green = 0.0};
+            color[0] = blue;
+            color[1] = color[0];
+            Draw(drawing, led, pio, color);
+        }
+        else if (key == 'C')
+        {
+            RGB red = {.Red = 0.8, .Blue = 0.0, .Green = 0.0};
+            color[0] = red;
+            color[1] = color[0];
+            Draw(drawing, led, pio, color);
+        }
+        else if (key == 'D')
+        {
+            RGB green = {.Red = 0.0, .Blue = 0.0, .Green = 0.5};
+            color[0] = green;
+            color[1] = color[0];
+            Draw(drawing, led, pio, color);
+        }
+        else if (key == '#')
+        {
+            RGB green = {.Red = 0.2, .Blue = 0.2, .Green = 0.2};
+            color[0] = green;
+            color[1] = color[0];
+            Draw(drawing, led, pio, color);
+        }
         sleep_ms(100);
     }
 

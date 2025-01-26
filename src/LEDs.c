@@ -299,21 +299,22 @@ void Draw(double *drawing, uint32_t led, refs pio, RGB *color)
 
 void DrawFrames(double *drawing, uint32_t led, refs pio, RGB *color, int delay, int *position)
 {
-    drawing = Drawing(0);
-    Draw(drawing, led, pio, color);
-    sleep_ms(delay);
-
+    gpio_put(BUZZERPIN, 1);
     for (int i = position[0]; i <= position[1]; i++)
     {
         drawing = Drawing(i);
         Draw(drawing, led, pio, color);
         sleep_ms(delay);
     }
-
+    gpio_put(BUZZERPIN, 0);
     for (int i = position[1]; i >= position[0]; i--)
     {
         drawing = Drawing(i);
         Draw(drawing, led, pio, color);
         sleep_ms(delay);
     }
+
+    drawing = Drawing(0);
+    Draw(drawing, led, pio, color);
+    sleep_ms(delay);
 }
