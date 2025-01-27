@@ -43,7 +43,7 @@ char ReadMap(const char (*KEYMAP)[NCOLUMNS], const int* ROWS, const int* COLUMNS
     }
     return '$';
 }
-// adicionada
+// adicionada aperta 3
 void HandleKeyPress(const char key, const int* led, PIO pio, const int* colors) {
     if (key == '3') { // Tecla 3 para a animação da estrela
         AnimateMovingStar(led, pio, colors); // Chama a animação
