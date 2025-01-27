@@ -55,28 +55,29 @@ double *Drawing(int frame)
         0.0, 0.0, 1.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0};
 
-    //Desenho estrela
+    // Frame 1: Estrela na parte superior
     static double frame1[] = {
         0.0, 0.0, 0.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 1.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0};
 
+    // Frame 2: Estrela no centro
     static double frame2[] = {
         0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 1.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0};
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0};
 
+    // Frame 3: Estrela na parte inferior
     static double frame3[] = {
         0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 1.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0};
-
+        0.0, 1.0, 1.0, 1.0, 0.0};
     //Desenho padrão
     static double defaultArray[] = {
         0.0, 0.0, 0.0, 0.0, 0.0,
@@ -100,14 +101,11 @@ double *Drawing(int frame)
         return firstFrameCruz;
         break;
     case 5:
-        return frame1;
-        break;
+        return frame1; // Primeiro frame da estrela
     case 6:
-        return frame2;
-        break;
+        return frame2; // Segundo frame da estrela
     case 7:
-        return frame3;
-        break;
+        return frame3; // Terceiro frame da estrela
     default:
         return defaultArray;
     }
@@ -186,9 +184,23 @@ void DrawFrames(double *drawing, uint32_t led, refs pio, RGB *color, int delay, 
         sleep_ms(delay);
     }
 }
-void AnimateMovingStar(uint32_t led, refs pio, RGB *color) {
-    int delay = 200; // Tempo entre frames (em ms)
-    int position[] = {5, 7}; // Frames da animação (frame1 até frame3)
 
-    DrawFrames(Drawing(0), led, pio, color, delay, position);
+void AnimateMovingStar(uint32_t led, refs pio, RGB *color)
+{
+    int delay = 300; // Tempo entre frames (em milissegundos)
+    int position[] = {5, 7}; // Frames da animação (de frame1 a frame3)
+
+    // Desenha os frames em ordem (movimento para baixo)
+    for (int i = position[0]; i <= position[1]; i++)
+    {
+        Draw(Drawing(i), led, pio, color);
+        sleep_ms(delay);
+    }
+
+    // Desenha os frames em ordem reversa (movimento para cima)
+    for (int i = position[1]; i >= position[0]; i--)
+    {
+        Draw(Drawing(i), led, pio, color);
+        sleep_ms(delay);
+    }
 }
