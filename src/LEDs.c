@@ -55,7 +55,27 @@ double *Drawing(int frame)
         0.0, 0.0, 1.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0};
 
-    //Proximo desenho.....
+    //Desenho estrela
+    static double frame1[] = {
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0};
+
+    static double frame2[] = {
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0};
+
+    static double frame3[] = {
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0};
 
     //Desenho padrão
     static double defaultArray[] = {
@@ -78,6 +98,15 @@ double *Drawing(int frame)
         break;
     case 4:
         return firstFrameCruz;
+        break;
+    case 5:
+        return frame1;
+        break;
+    case 6:
+        return frame2;
+        break;
+    case 7:
+        return frame3;
         break;
     default:
         return defaultArray;
@@ -156,4 +185,10 @@ void DrawFrames(double *drawing, uint32_t led, refs pio, RGB *color, int delay, 
         Draw(drawing, led, pio, color);
         sleep_ms(delay);
     }
+}
+void AnimateMovingStar(uint32_t led, refs pio, RGB *color) {
+    int delay = 200; // Tempo entre frames (em ms)
+    int position[] = {5, 7}; // Frames da animação (frame1 até frame3)
+
+    DrawFrames(Drawing(0), led, pio, color, delay, position);
 }

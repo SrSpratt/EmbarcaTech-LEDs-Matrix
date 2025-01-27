@@ -42,4 +42,4 @@ char ReadMap(const char (*KEYMAP)[NCOLUMNS], const int* ROWS, const int* COLUMNS
         gpio_put(COLUMNS[col], 0);
     }
     return '$';
-}
+} 

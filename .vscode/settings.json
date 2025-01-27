@@ -38,6 +38,8 @@
     "raspberry-pi-pico.ninjaPath": "${HOME}/.pico-sdk/ninja/v1.12.1/ninja",
     "files.associations": {
         "animacaocruz.h": "c",
-        "pio_matrix.pio.h": "c"
+        "pio_matrix.pio.h": "c",
+        "keyboardelm.h": "c",
+        "generalpinelm.h": "c"
     }
 }
