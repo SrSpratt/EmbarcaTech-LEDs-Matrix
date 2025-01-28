@@ -65,9 +65,9 @@ int main()
         }
         else if (key == '4')
         {
-            color[0].Red = 0.9;
-            color[0].Blue = 0.5;
-            color[0].Green = 0.6;
+            color[0].Red = 1.0;
+            color[0].Blue = 0.0;
+            color[0].Green = 0.0;
     
             position[0] = 10;
             position[1] = 14;
