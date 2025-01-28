@@ -10,5 +10,6 @@ void PrintPIO(refs);
 double* Drawing(int);
 void Draw(double*, uint32_t, refs, RGB*);
 void DrawFrames(double*, uint32_t, refs, RGB*, int, int*);
+void TurnLedsOff(uint32_t led, refs pio);
 
 #endif

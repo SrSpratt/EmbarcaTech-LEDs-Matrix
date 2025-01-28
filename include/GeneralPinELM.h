@@ -2,6 +2,8 @@
 #define GENERALPINELM_H
 
 #define LEDMPIN 7
+#define BUZZERPIN 21
+#define BUTTONPIN 22
 
 #define COLINIT 8
 #define ROWINIT 12
@@ -27,5 +29,7 @@ refs InitConf();
 refs InitPIO();
 void SetInput(int);
 void SetOutput(int);
+void SetInterruption(int);
+void HandleInterruption();
 
 #endif

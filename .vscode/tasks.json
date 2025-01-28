@@ -28,9 +28,7 @@
             ],
             "presentation": {
                 "reveal": "always",
-                "panel": "dedicated",
-                "focus": false,
-                "close": false
+                "panel": "dedicated"
             },
             "problemMatcher": [],
             "windows": {
