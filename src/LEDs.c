@@ -197,7 +197,7 @@ void AnimateMovingStar(uint32_t led, refs pio, RGB *color)
         sleep_ms(delay);
     }
 
-    // Desenha os frames em ordem reversa (movimento para cima)
+    // Desenha os frames em ordem reversa
     for (int i = position[1]; i >= position[0]; i--)
     {
         Draw(Drawing(i), led, pio, color);
