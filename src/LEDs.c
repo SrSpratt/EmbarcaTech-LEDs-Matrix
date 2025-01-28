@@ -85,9 +85,9 @@ double *Drawing(int frame)
 
     static double thirdFrameCruz[] = {
         0.0, 0.0, 1.0, 0.0, 0.0,
-        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
         1.0, 1.0, 1.0, 1.0, 1.0,
-        0.0, 1.0, 1.0, 1.0, 0.0,
         0.0, 0.0, 1.0, 0.0, 0.0};
 
     static double fourthFrameCruz[] = {
@@ -99,12 +99,19 @@ double *Drawing(int frame)
 
     static double fifthFrameCruz[] = {
         0.0, 0.0, 1.0, 0.0, 0.0,
-        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
         1.0, 1.0, 1.0, 1.0, 1.0,
-        0.0, 1.0, 1.0, 1.0, 0.0,
         0.0, 0.0, 1.0, 0.0, 0.0};
 
     static double sixthFrameCruz[] = {
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0};
+
+    static double seventhFrameCruz[] = {
         0.0, 1.0, 0.0, 1.0, 0.0,
         1.0, 0.0, 1.0, 0.0, 1.0,
         0.0, 1.0, 1.0, 1.0, 0.0,
@@ -149,47 +156,47 @@ double *Drawing(int frame)
 
     // Frames de Quadrados
     static double firstFrameQ[] = {
-    0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 1.0, 1.0, 1.0, 0.0,
-    0.0, 1.0, 0.0, 1.0, 0.0,
-    0.0, 1.0, 1.0, 1.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0};
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 1.0, 0.0, 1.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0};
 
     static double secondFrameQ[] = {
-    0.0, 0.0, 0.0, 0.0, 0.0,
-    1.0, 1.0, 1.0, 1.0, 1.0,
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 1.0, 1.0, 1.0, 1.0};
+        0.0, 0.0, 0.0, 0.0, 0.0,
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0};
 
     static double thirdFrameQ[] = {
-    0.0, 1.0, 1.0, 1.0, 0.0,
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    0.0, 1.0, 1.0, 1.0, 0.0};
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        0.0, 1.0, 1.0, 1.0, 0.0};
 
     static double fourthFrameQ[] = {
-    1.0, 1.0, 1.0, 1.0, 1.0,
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 1.0, 1.0, 1.0, 1.0};
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0};
 
     static double fifthFrameQ[] = {
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    0.0, 1.0, 1.0, 1.0, 0.0,
-    0.0, 1.0, 0.0, 1.0, 0.0,
-    0.0, 1.0, 1.0, 1.0, 0.0,
-    1.0, 0.0, 0.0, 0.0, 1.0};
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        0.0, 1.0, 0.0, 1.0, 0.0,
+        0.0, 1.0, 1.0, 1.0, 0.0,
+        1.0, 0.0, 0.0, 0.0, 1.0};
 
     static double sixthFrameQ[] = {
-    1.0, 1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 0.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0, 1.0};
-        
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 1.0, 0.0, 1.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0};
+
     // Desenho padrão
     static double defaultArray[] = {
         0.0, 0.0, 0.0, 0.0, 0.0,
@@ -218,23 +225,26 @@ double *Drawing(int frame)
     case 26:
         return sixthFrameX;
         break;
-    case 4:
+    case 30:
         return firstFrameCruz;
         break;
-    case 5:
+    case 31:
         return secondFrameCruz;
         break;
-    case 6:
+    case 32:
         return thirdFrameCruz;
         break;
-    case 7:
+    case 33:
         return fourthFrameCruz;
         break;
-    case 8:
+    case 34:
         return fifthFrameCruz;
         break;
-    case 9:
+    case 35:
         return sixthFrameCruz;
+        break;
+    case 36:
+        return seventhFrameCruz;
         break;
     case 10:
         return firstFrameM;
@@ -349,9 +359,9 @@ void DrawFrames(double *drawing, uint32_t led, refs pio, RGB *color, int delay, 
     sleep_ms(delay);
 }
 
-void TurnLedsOff(uint32_t led, refs pio){
+void TurnLedsOff(uint32_t led, refs pio)
+{
     RGB turnedOff[2] = {{.Red = 0.0, .Green = 0.0, .Blue = 0.0}, {.Red = 0.0, .Green = 0.0, .Blue = 0.0}};
     double *drawing = Drawing(0);
     Draw(drawing, led, pio, turnedOff);
 }
-
