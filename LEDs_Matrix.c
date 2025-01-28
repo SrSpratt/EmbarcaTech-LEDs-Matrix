@@ -89,8 +89,8 @@ int main()
             color[0].Blue = 1.0;
             color[0].Green = 0.6;
 
-            position[0] = 5;
-            position[1] = 25;
+            position[0] = 47;
+            position[1] = 50;
             DrawFrames(drawing, led, pio, color, 800, position);
         }
         else if (key == 'A')
