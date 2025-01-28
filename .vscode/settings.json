@@ -42,6 +42,10 @@
         "ledselm.h": "c",
         "cstdint": "c",
         "keyboardelm.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "bootrom.h": "c",
+        "generalpinelm.h": "c",
+        "compare": "c",
+        "math.h": "c"
     }
 }
