@@ -19,7 +19,7 @@ int main()
 
     // printf("ANTES DE INICIAR\n");
     pio = InitPIO();
-    PrintPIO(pio);
+    //PrintPIO(pio);
 
     // printf("Programa iniciado!\n");
     // printf("Desenho iniciado: \n");
@@ -30,7 +30,6 @@ int main()
     // printf("DEPOIS DE INICIAR\n");
 
     SetOutput(BUZZERPIN);
-    SetInterruption(BUTTONPIN);
 
     KEYMAP = KeyMap();
 
@@ -38,9 +37,9 @@ int main()
     uint32_t led = 0;
     RGB color[2] = {
         {.Red = 0.0, .Green = 1.0, .Blue = 0.0}, 
-        {.Red = 0.0, .Green = 1.0, .Blue = 1.0}};
+        {.Red = 1.0, .Green = 1.0, .Blue = 1.0}};
 
-    PrintRGB(color[1]);
+    //PrintRGB(color[1]);
 
     int position[2] = {0,0};
     Draw(drawing, led, pio, color);
