@@ -22,7 +22,8 @@ Certifique-se de que você tem o ambiente configurado conforme abaixo:
 
 #### Manual do programa
 Ao executar o programa, todos os leds serão ligados com a cor branca.
-A lógica do programa é que ao apertar os botões de números, serão desenhadas animações (em outra cor) a 1,25 frames por segundo (cada animação é mantida por 800 milissegundos). As animações saem cor branca até o desenho principal, que passa 1,6s na tela e depois volta para a cor branca novamente. Cada integrante fez uma animação:
+A lógica do programa é que ao apertar os botões de números, serão desenhadas animações (em outra cor) a 1,25 frames por segundo (cada animação é mantida por 800 milissegundos).
+As animações saem cor branca até o desenho principal, e depois voltam de forma simétrica à tela inicial (cor branca). Cada integrante fez uma animação:
 * Para o número 1, o programa desenha um X em verde. (Roberto)
 * Para o número 3, o programa desenha um quadrado roxo. (Davi)
 * Para o número 4, o programa desenha um M vermelho. (Marcel)
