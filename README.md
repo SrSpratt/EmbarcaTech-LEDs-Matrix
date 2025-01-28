@@ -25,8 +25,9 @@ Ao executar o programa, todos os leds serão ligados com a cor branca.
 A lógica do programa é que ao apertar os botões de números, serão desenhadas animações (em outra cor) a 1,25 frames por segundo (cada animação é mantida por 800 milissegundos). As animações saem cor branca até o desenho principal, que passa 1,6s na tela e depois volta para a cor branca novamente. Cada integrante fez uma animação:
 * Para o número 1, o programa desenha um X em verde. (Roberto)
 * Para o número 3, o programa desenha um quadrado roxo. (Davi)
-* Para o número 4, o programa desenha um W rosa. (Marcel)
+* Para o número 4, o programa desenha um M vermelho. (Marcel)
 * Para o número 5, o programa desenha uma cruz lilás. (Hilquias)
+* Para o número 6, o programa desenha uma estrela rosa. (Kaique)
     * Obs.: em todas as animações, o buzzer é ligado quando as figuras se iniciam e desligado quando chegam na figura principal (X, quadrado, W, cruz).
 Para as letras:
 * Para a letra A, o programa apaga todas as luzes.

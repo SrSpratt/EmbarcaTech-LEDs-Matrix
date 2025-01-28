@@ -3,8 +3,10 @@
 
 #include "GeneralPinELM.h"
 
+// tamanho do vetor de LEDs
 #define NPIXELS 25
 
+// Funções de manipulação dos LEDs
 void PrintRGB(RGB);
 void PrintPIO(refs);
 double* Drawing(int);

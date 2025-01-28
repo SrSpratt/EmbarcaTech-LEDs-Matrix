@@ -7,7 +7,7 @@
 #include "pico/bootrom.h"
 #include "pio_matrix.pio.h"
 
-
+// Iniciam o monitor serial e o PIO 
 refs InitConf(){
     refs pio;
 
@@ -17,7 +17,7 @@ refs InitConf(){
         printf("Clock configurado para %ld\n", clock_get_hz(clk_sys));
     pio.Offset = pio_add_program(pio.Ref, &pio_matrix_program);
     pio.StateMachine = pio_claim_unused_sm(pio.Ref, true);
-    PrintPIO(pio);
+    //PrintPIO(pio);
     return pio;
 }
 
@@ -27,6 +27,7 @@ refs InitPIO(){
     return pio;
 }
 
+// Iniciam e dão a direção dos pinos
 void SetInput(int PIN){
     gpio_init(PIN);
     gpio_set_dir(PIN, false);
@@ -38,6 +39,10 @@ void SetOutput(int PIN){
     gpio_set_dir(PIN, true);
     gpio_put(PIN, 0);
 }
+
+
+
+
 
 void SetInterruption(int PIN){
     //SetInput(PIN);

@@ -3,6 +3,7 @@
 #include <math.h>
 #include <stdio.h>
 
+//Prints de debug para os endereços configurados do PIO e das cores
 void PrintRGB(RGB color)
 {
     printf("---RGB---\n");
@@ -23,6 +24,7 @@ void PrintPIO(refs pio)
     printf("---------\n");
 }
 
+// Retorna os vetores com as figuras a serem desenhadas na matriz de LEDs
 double *Drawing(int frame)
 {
     // Desenho X
@@ -333,6 +335,7 @@ static double fifthFrameM[] = {
     }
 }
 
+// Retorna as cores dos LEDs a serem utilizadas
 uint32_t RGBMatrix(RGB color)
 {
     unsigned char R, G, B;
@@ -353,6 +356,8 @@ void PrintBinary(int num)
     printf("\n");
 }
 
+
+//Desenha uma figura na matriz
 void Draw(double *drawing, uint32_t led, refs pio, RGB *color)
 {
     //    PrintPIO(pio);
@@ -386,6 +391,7 @@ void Draw(double *drawing, uint32_t led, refs pio, RGB *color)
     }
 }
 
+//Desenha uma animação, uma sequência de figuras
 void DrawFrames(double *drawing, uint32_t led, refs pio, RGB *color, int delay, int *position)
 {
     gpio_put(BUZZERPIN, 1);
@@ -408,6 +414,7 @@ void DrawFrames(double *drawing, uint32_t led, refs pio, RGB *color, int delay, 
     sleep_ms(delay);
 }
 
+// Apaga os LEDs
 void TurnLedsOff(uint32_t led, refs pio)
 {
     RGB turnedOff[2] = {{.Red = 0.0, .Green = 0.0, .Blue = 0.0}, {.Red = 0.0, .Green = 0.0, .Blue = 0.0}};
