@@ -189,6 +189,39 @@ double *Drawing(int frame)
     1.0, 1.0, 0.0, 1.0, 1.0,
     1.0, 1.0, 1.0, 1.0, 1.0,
     1.0, 1.0, 1.0, 1.0, 1.0};
+
+    // Frame 1: Estrela na parte superior
+    static double frame1[] = {
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0};
+
+    // Frame 2: Estrela na parte superior
+    static double frame2[] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0};
+
+// Frame 3: Estrela no centro
+    static double frame3[] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0};
+
+// Frame 4: Estrela na parte inferior
+    static double frame4[] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 1.0, 1.0, 1.0, 0.0};
+
         
     // Desenho padrão
     static double defaultArray[] = {
@@ -217,6 +250,18 @@ double *Drawing(int frame)
         break;
     case 26:
         return sixthFrameX;
+        break;
+    case 27:
+        return frame1;
+        break;
+    case 28:
+        return frame2; 
+        break;
+    case 29:
+        return frame3;
+        break;
+    case 30:
+        return frame4;
         break;
     case 4:
         return firstFrameCruz;
