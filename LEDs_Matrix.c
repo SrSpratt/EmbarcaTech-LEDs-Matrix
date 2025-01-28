@@ -83,6 +83,16 @@ int main()
             position[1] = 9;
             DrawFrames(drawing, led, pio, color, 800, position);
         }
+        else if (key == '6')
+        {
+            color[0].Red = 1.0;
+            color[0].Blue = 1.0;
+            color[0].Green = 0.6;
+
+            position[0] = 5;
+            position[1] = 25;
+            DrawFrames(drawing, led, pio, color, 800, position);
+        }
         else if (key == 'A')
         {
             RGB none = {.Red = 0.0, .Blue = 0.0, .Green = 0.0};
